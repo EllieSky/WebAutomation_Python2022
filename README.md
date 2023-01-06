@@ -2,5 +2,5 @@
 WebDriver Python course
 
 
-hi,  This is my first repo!
-I am making my first commit
+Hello,  This is my first repo!
+I am making my first commit now and later.
