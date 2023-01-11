@@ -12,3 +12,6 @@ To create a branch use the command
 To create a "rollback point" known as commit use the command
 `git add .
 git commit -m "your commit description goes here"`
+
+Hello, this is my first repo!
+I'm making my first commit now.
