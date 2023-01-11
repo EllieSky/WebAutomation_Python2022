@@ -1,0 +1,13 @@
+When on a local version of master (master branch, a.k.a. trunk, main)
+ 1) git fetch
+ 2) git pull  (git pull origin/master)
+result: local master branch will be updated with changes made to the remote master branch
+
+Whne on a local personal branch (my_branch)
+ 1) git fetch
+    If trying to update personal branch (my_branch) with changes
+ from your personal branch on the remote server (origin/my_branch)
+ 2A) git pull (git pull origin/my_branch)
+    If trying to update personal branch (my_branch) with changes
+ from master on the remote server (origin/master)
+ 2B) git rebase origin/master
