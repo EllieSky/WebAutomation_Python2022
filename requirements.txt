@@ -1,3 +1,4 @@
 Faker==16.3.0
 selenium==4.7.2
 webdriver-manager~=3.8.5
+configparser==5.3.0
