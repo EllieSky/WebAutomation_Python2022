@@ -89,6 +89,5 @@ class AddEmployeeTestCase(unittest.TestCase):
         self.assertEqual(f'Welcome {first_name}', self.welcome_menu.get_welcome_message())
 
 
-
 if __name__ == '__main__':
     unittest.main()
