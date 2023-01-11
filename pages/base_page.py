@@ -5,11 +5,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
+from helpers.base_steps import BaseMethods
 from tests import BASE_URL
 
 
-class BasePage:
+class BasePage(BaseMethods):
     def __init__(self, browser: webdriver.Remote):
+        super().__init__(browser)
         self.browser = browser
         self.wait = WebDriverWait(self.browser, 5)
 
