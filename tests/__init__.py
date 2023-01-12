@@ -5,7 +5,7 @@ TEST_INIT = os.path.abspath(__file__)
 TEST_DIR = os.path.dirname(TEST_INIT)
 PROJECT_PATH = os.path.dirname(TEST_DIR)
 
-TEST_ENV = os.environ.get('TEST_ENV')
+TEST_ENV = os.environ.get('TEST_ENV') or 'local'
 
 config = ConfigParser()
 config.read(f'{PROJECT_PATH}/config.ini')
