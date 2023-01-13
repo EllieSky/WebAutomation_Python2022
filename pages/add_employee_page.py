@@ -5,6 +5,10 @@ from pages.base_page import BasePage
 
 
 class AddEmployeePage(BasePage):
+    fld_username = (By.ID, 'user_name')
+    fld_user_password = (By.ID, 'user_password')
+
+
     @property
     def PAGE_URL(self):
         return "/pim/addEmployee"
@@ -29,11 +33,8 @@ class AddEmployeePage(BasePage):
             check_box.click()
 
     def enter_user_info(self, username, password="Bob", repassword=None):
-        self.wait.until(EC.visibility_of_element_located(
-            (By.ID, 'user_name'))).send_keys(username)
-        self.wait.until(EC.visibility_of_element_located(
-            (By.ID, 'user_password'))).send_keys(password)
+        self.wait_for_elem_visible(self.fld_username).send_keys(username)
+        self.wait_for_elem_visible(self.fld_user_password).send_keys(password)
         if not repassword:
             repassword = password
-        self.wait.until(EC.visibility_of_element_located(
-            (By.ID, 're_password'))).send_keys(repassword)
+        self.wait_for_elem_visible((By.ID, 're_password')).send_keys(repassword)

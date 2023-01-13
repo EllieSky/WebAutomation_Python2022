@@ -2,42 +2,17 @@ import unittest
 
 from faker import Faker
 
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
-from webdriver_manager.chrome import ChromeDriverManager
 
-from menus.main_menu import MainMenu
-from menus.welcome_menu import WelcomeMenu
-from pages.add_employee_page import AddEmployeePage
-from pages.employee_information_page import EmployeeInformationPage
-from pages.login_page import LoginPage
-from pages.personal_details_page import PersonalDetailsPage
-from pages.system_users_page import SystemUsersPage
+from helpers.fixtures import AdminAuthTest
 
 
-class AddEmployeeTestCase(unittest.TestCase):
-    def setUp(self) -> None:
-        self.url = "http://hrm-online.portnov.com/"
-        self.browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-        self.browser.get(self.url)
-        self.wait = WebDriverWait(self.browser, 6)
-        self.login_page = LoginPage(self.browser)
-        self.emp_info = EmployeeInformationPage(self.browser)
-        self.add_emp = AddEmployeePage(self.browser)
-        self.personal_details = PersonalDetailsPage(self.browser)
-        self.main_menu = MainMenu(self.browser)
-        self.welcome_menu = WelcomeMenu(self.browser)
-        self.sys_user = SystemUsersPage(self.browser)
-
+class AddEmployeeTestCase(AdminAuthTest):
     def test_add_employee_default_fields(self):
         first_name = Faker().first_name()
         last_name = Faker().last_name()
         emp_id = Faker().random.randrange(400000, 1000000)
 
-        self.login_page.login()
         self.assertEqual(self.emp_info.PAGE_NAME, self.emp_info.get_header())
         self.emp_info.do_add_employee()
         self.assertEqual(self.add_emp.PAGE_NAME, self.add_emp.get_header())
@@ -54,7 +29,6 @@ class AddEmployeeTestCase(unittest.TestCase):
         emp_id = Faker().random.randrange(400000, 1000000)
 
         self.add_emp.go_to_page()
-        self.login_page.login()
         self.assertEqual(self.add_emp.PAGE_NAME, self.add_emp.get_header())
         self.add_emp.enter_employee_info(emp_id, first_name, last_name)
         self.add_emp.do_create_login_details()
