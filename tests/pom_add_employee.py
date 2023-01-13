@@ -8,6 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 
+from helpers.fixtures import SetupTest
 from menus.main_menu import MainMenu
 from menus.welcome_menu import WelcomeMenu
 from pages.add_employee_page import AddEmployeePage
@@ -17,7 +18,8 @@ from pages.personal_details_page import PersonalDetailsPage
 from pages.system_users_page import SystemUsersPage
 
 
-class AddEmployeeTestCase(unittest.TestCase):
+
+class AddEmployeeTestCase(SetupTest):
     def setUp(self) -> None:
         self.url = "http://hrm-online.portnov.com/"
         self.browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
