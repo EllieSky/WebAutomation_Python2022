@@ -1,3 +1,4 @@
+import os
 import unittest
 
 from selenium import webdriver
@@ -12,7 +13,7 @@ from pages.employee_information_page import EmployeeInformationPage
 from pages.login_page import LoginPage
 from pages.personal_details_page import PersonalDetailsPage
 from pages.system_users_page import SystemUsersPage
-from tests import DEFAULT_WAIT, DOMAIN
+from tests import DEFAULT_WAIT, DOMAIN, PROJECT_PATH, OUTPUT_DIR
 
 
 class SetupTest(unittest.TestCase):
@@ -30,6 +31,30 @@ class SetupTest(unittest.TestCase):
         self.sys_user = SystemUsersPage(self.browser)
 
     def tearDown(self) -> None:
+
+        if self._outcome.errors[1][1]:
+            output_folder_path = os.path.join(PROJECT_PATH, OUTPUT_DIR)
+
+            if not os.path.exists(output_folder_path):
+                os.mkdir(output_folder_path)
+
+            test_name: str = self._outcome.result.current_test_id
+            test_name_pieces = test_name.split('.')
+
+            folder_path = output_folder_path
+            for piece in test_name_pieces:
+                folder_path = os.path.join(folder_path, piece)
+                os.mkdir(folder_path)
+
+            self.browser.save_screenshot(
+                os.path.join(folder_path, 'screenshot.png')
+            )
+
+            page_source = self.browser.page_source
+            file = open(os.path.join(folder_path, 'source.html'), 'w')
+            file.write(page_source)
+            file.close()
+
         self.browser.quit()
 
 

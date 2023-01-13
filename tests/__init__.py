@@ -12,6 +12,7 @@ config.read(f'{PROJECT_PATH}/config.ini')
 
 DOMAIN = config.get(TEST_ENV, 'DOMAIN')
 BASE_URL = f'{DOMAIN}/symfony/web/index.php'
+OUTPUT_DIR = config.get(TEST_ENV, 'OUTPUT')
 
 DEFAULT_WAIT = config.get(TEST_ENV, 'DEFAULT_WAIT')
 
