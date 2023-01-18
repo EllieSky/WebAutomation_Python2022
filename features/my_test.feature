@@ -1,3 +1,4 @@
+@no_selenium
 Feature: Cucumber example
 
   Scenario: Count letters in a name
