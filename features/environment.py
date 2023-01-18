@@ -23,9 +23,12 @@ def before_scenario(context, scenario):
     context.base_methods = BaseMethods(context.browser)
     context.wait = WebDriverWait(context.browser, DEFAULT_WAIT)
     context.browser.get(context.url)
-    
+
+
 def after_scenario(context, scenario):
-    if context.status.name == 'failed':
+    if "no_selenium" in scenario.effective_tags:
+        return
+    if context.failed:
         output_folder_path = os.path.join(PROJECT_PATH, 'behave_failed_tests')
 
         if not os.path.exists(output_folder_path):

@@ -5,6 +5,8 @@ TEST_INIT = os.path.abspath(__file__)
 TEST_DIR = os.path.dirname(TEST_INIT)
 PROJECT_PATH = os.path.dirname(TEST_DIR)
 
+OUTPUT_DIR = "failed_tests"
+
 TEST_ENV = os.environ.get('TEST_ENV') or 'local'
 
 config = ConfigParser()
@@ -12,7 +14,6 @@ config.read(f'{PROJECT_PATH}/config.ini')
 
 DOMAIN = config.get(TEST_ENV, 'DOMAIN')
 BASE_URL = f'{DOMAIN}/symfony/web/index.php'
-OUTPUT_DIR = config.get(TEST_ENV, 'OUTPUT')
 
 DEFAULT_WAIT = config.get(TEST_ENV, 'DEFAULT_WAIT')
 
