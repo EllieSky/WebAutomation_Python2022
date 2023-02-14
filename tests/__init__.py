@@ -1,4 +1,4 @@
-import os
+import os # package operating system - access env variable and create smart path
 from configparser import ConfigParser
 
 TEST_INIT = os.path.abspath(__file__)
